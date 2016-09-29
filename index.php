@@ -1,16 +1,16 @@
 <?php
+ /* @author: Tohir Omoloye; */
+//Create Image
+$img = ImageCreateFromJPEG("passport.jpg");
  
-//Carregar imagem
-$rImg = ImageCreateFromJPEG("passport.jpg");
+//Define cordinate you like to write in
+$cordinate = imagecolorallocate($img, 0, 0, 0);
  
-//Definir cor
-$cor = imagecolorallocate($rImg, 0, 0, 0);
+//Engrave the name on image
+imagestring($img,5,126,22,urldecode($_GET['name']),$cordinate);
  
-//Escrever nome
-imagestring($rImg,5,126,22,urldecode($_GET['nome']),$cor);
- 
-//Header e output
+//Output
 header('Content-type: image/jpeg');
-imagejpeg($rImg,NULL,100);
+imagejpeg($img,NULL,100);
  
 ?>
